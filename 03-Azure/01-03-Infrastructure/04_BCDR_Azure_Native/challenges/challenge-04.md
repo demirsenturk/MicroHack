@@ -16,6 +16,11 @@ In this challenge, you will learn how to protect VM's with Azure Site Recovery a
 1. Set up disaster recovery for the Linux VM in the primary region.
 2. Simulate a zone-to-zone failover in the primary region.
 
+> [!IMPORTANT]
+> To enable disaster recovery (DR), you may need to grant the Recovery Services Vault appropriate **access permissions**.
+> 
+> 💡 **Need help?** Refer to the [step-by-step guidance](../walkthrough/challenge-04/solution-04.md#enable-system-managed-identity-for-the-recovery-services-vault) in the solution.
+
 ### Success Criteria ✅
 
 - You have successfully enabled disaster recovery between availability zones of an Azure VM.

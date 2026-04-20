@@ -19,30 +19,27 @@ Ensure Challenge 5 is completed with:
 
 After failing over the VMs to Sweden Central, the web application needs to be reconnected by adding the failed-over VMs to the load balancer's backend pool.
 
+![Architecture after failover](./img/asrdemo%20architecture.png)
+
 ### Add Failed-Over VMs to Load Balancer Backend Pool
 
-1. Navigate to the **Load Balancer** in Sweden Central
-2. Go to **Backend pools** in the left menu
-3. Select the backend pool for the web application
-4. Click **+ Add** to add virtual machines
-5. Select the failed-over web VMs:
-   - `mh-web1` (failed-over instance in Sweden Central)
-   - `mh-web2` (failed-over instance in Sweden Central)
-6. Save the configuration
+1. Navigate to the **Load Balancer** in Sweden Central.
 
-### Verify Load Balancer Configuration
+   ![image](./img/027.png)
 
-1. Confirm both VMs are listed in the backend pool
-2. Check the health probe status to ensure VMs are responding
-3. Verify the load balancing rules are properly configured
+2. Go to **Backend pools** and add the failed-over Virtual Machines in the secondary region to the backend pool.
+
+   ![image](./img/028.png)
+
+   ![image](./img/029.png)
+
+   ![image](./img/030.png)
 
 ### Test Web Application Connectivity
 
-1. Navigate to the Load Balancer's frontend IP address or DNS name
-2. Access the web application through the load balancer
-3. Verify the application is responding correctly
-4. Confirm the application shows it's running from the Sweden Central region
-5. Refresh multiple times to verify load balancing across both VMs
+1. Access the web application through the load balancer and verify it is responding correctly from the Sweden Central region.
+
+   ![image](./img/031.png)
 
 > **Success!** You have successfully re-established the web application in the secondary region after DR failover.
 
@@ -50,12 +47,17 @@ After failing over the VMs to Sweden Central, the web application needs to be re
 
 ### Verify GRS Configuration
 
-1. Navigate to the **Storage Account** in Germany West Central (primary region)
-2. Select **Redundancy** from the left menu
-3. Verify that **Geo-redundant storage (GRS)** is enabled
-4. Identify the secondary region for data replication
-   - The secondary region is automatically paired (typically Germany North for Germany West Central)
-5. Note the last sync time to verify replication is active
+1. Navigate to the **Storage Account** in Germany West Central (primary region). Select **Redundancy** from the left menu.
+
+   ![image](./img/01.png)
+
+2. Verify that **Geo-redundant storage (GRS)** is enabled. This enables cross-replication of your storage account with the paired region.
+
+   ![image](./img/02.png)
+
+3. Identify the secondary region for data replication. You can see the Secondary Region of the Storage Account.
+
+   ![image](./img/11.png)
 
 > **Note:** With GRS, Azure automatically replicates your data to a secondary region that is hundreds of miles away from the primary region.
 
@@ -80,10 +82,15 @@ After failing over the VMs to Sweden Central, the web application needs to be re
    - Click **Prepare for failover** 
    - Review the impact and confirm
    - Monitor the failover process
+
+   ![image](./img/12.png)
+
 4. After failover completes, verify:
    - The storage account is now primary in the secondary region
    - Data is accessible from the new primary region
    - Redundancy type has changed to LRS
+
+   ![image](./img/13.png)
 
 > **Caution:** In a production environment, only perform storage account failover when the primary region is genuinely unavailable.
 

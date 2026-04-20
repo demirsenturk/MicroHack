@@ -74,6 +74,10 @@ Verify the following resources and setup. Ensure the storage account has geo-red
 
 There is a WebApp running on the machines deployed in the Lab Environment. The Web Application uses two Virtual Machines as backend servers, so it might be running from either VM `mh-web1` or VM `mh-web2`. The lab environment provides a UI to see which host the web application is running from.
 
+![web1](./exploration/1.png)
+![web2](./exploration/2.png)
+![web3](./exploration/3.png)
+
 ![Traffic Manager Settings](./exploration/4.png)
 ![Website via Traffic Manager](./exploration/004.png)
 

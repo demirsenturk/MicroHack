@@ -46,20 +46,26 @@ Before you can fail back, you must reprotect the VMs to enable reverse replicati
 
 Once reprotection is complete:
 
-1. Navigate to the **Recovery Plan** or individual VM's disaster recovery blade
-2. Click **Failover** from the top menu
-3. Configure failover settings:
+1. You can't fail back the VM until the replication has completed, and synchronization is 100% completed. The synchronization process can take several minutes to complete. After the Synchronization completes, select **Failover**.
+
+   ![image](./img/01.png)
+
+2. Configure failover settings:
    - **Failover direction**: From Sweden Central to Germany West Central
    - **Recovery point**: Select the latest recovery point
    - **Shut down machines**: Check this option to minimize data loss
-4. Confirm and start the failover
+
+   ![image](./img/mh-ch-screenshot-27.png)
+
+3. Confirm and start the failover.
+
+   ![image](./img/mh-ch-screenshot-28.png)
 
 ### Monitor Failback Progress
 
-1. Navigate to **Site Recovery jobs**
-2. Monitor the failover job progress
-3. Wait for completion (typically 15-30 minutes)
-4. Verify VMs are running in Germany West Central
+1. Check the Virtual machine list. The server is running again in the Germany West Central region.
+
+   ![image](./img/mh-ch-screenshot-29.png)
 
 ### Step 3: Commit the Failback
 
@@ -111,32 +117,43 @@ After a storage account failover, the account is converted to LRS in the new pri
 
 ### Reconfigure Storage Redundancy
 
-1. Navigate to the **Storage Account** (now primary in the secondary region)
-2. Go to **Redundancy** settings
-3. Change redundancy from LRS to GRS or GZRS
-   - This re-establishes geo-replication
-   - The original primary region (Germany West Central) becomes the new secondary
-4. Wait for initial synchronization to complete
-5. Monitor the **Last sync time** to verify replication is active
+1. Navigate to the **Storage Account** (now primary in the secondary region).
 
-> **Note:** Once reconfigured to GRS, data begins replicating to Germany West Central (now the secondary region).
+   ![image](./img/17.png)
+
+2. Go to **Redundancy** settings.
+
+   ![image](./img/18.png)
+
+3. If not configured, choose Geo-redundant storage (GRS) as redundancy option. This will enable cross-replication of your storage account with the paired region Germany West Central.
+
+   ![image](./img/13.png)
+
+   ![image](./img/14.png)
+
+4. You can see now Germany West Central as the Secondary Region of the Storage Account.
+
+   ![image](./img/15.png)
 
 ### Initiate Storage Account Failover (Back to Original Primary)
 
-1. After GRS synchronization is complete and stable:
-   - Go to **Redundancy** blade
-2. Click **Prepare for failover** to fail over to Germany West Central
-3. Review the warnings:
+1. After GRS synchronization is complete and stable, go to the **Redundancy** blade.
+
+   ![image](./img/19.png)
+
+2. Click **Prepare for failover** to fail over to Germany West Central. Review the warnings:
    - This will make Germany West Central the primary region again
    - Data loss is possible if last sync is not recent
    - The failover takes approximately 1 hour
-4. Confirm the failover
+3. Confirm the failover.
 
 ### Monitor Storage Failback
 
 1. Monitor the failover progress (typically takes 30-60 minutes)
 2. Wait for completion notification
 3. Verify the storage account is now primary in Germany West Central
+
+   ![image](./img/23.png)
 
 ### Verify Data Integrity
 

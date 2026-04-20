@@ -18,6 +18,11 @@ In this challenge, you will learn how to back up and restore a Linux Virtual Mac
 3. Restore a VM in Azure.
 4. Optional: Restore a file vom Azure Blob.
 
+> [!IMPORTANT]
+> To enable backup for the storage account, you need to grant the Backup Vault appropriate **access permissions**.
+> 
+> 💡 **Need help?** Refer to the [step-by-step guidance](../walkthrough/challenge-03/solution-03.md#task-2-enable-azure-backup-for-blobs) in the solution.
+
 ### Success Criteria ✅
 
 - You have successfully set up Azure Backup for a virtual machine.
