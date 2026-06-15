@@ -6,14 +6,14 @@
 
 ## Solution Overview
 
-This challenge focuses on re-establishing web application connectivity after the DR failover to Sweden Central and verifying that Azure Storage Account disaster recovery is properly configured with GRS. You will add the failed-over VMs to the load balancer and test storage account failover.
+This challenge focuses on re-establishing web application connectivity after the DR failover to Sweden Central and verifying that Azure Storage Account disaster recovery is properly configured. The storage account was deployed as LRS in Challenge 2, so you will change its redundancy to GRS, add the failed-over VMs to the load balancer, and test storage account failover.
 
 ## Prerequisites
 
 Ensure Challenge 5 is completed with:
 - Web VMs (`mh-web1` and `mh-web2`) failed over and running in Sweden Central
 - Load Balancer configured in the environment
-- Storage Account with GRS enabled
+- Storage Account deployed (LRS by default — you will change it to GRS in this challenge)
 
 ## Task 1: Re-establish connection to the Web Application
 
@@ -45,21 +45,23 @@ After failing over the VMs to Sweden Central, the web application needs to be re
 
 ## Task 2: Disaster Recovery for Azure Storage Account
 
-### Verify GRS Configuration
+### Change Redundancy from LRS to GRS
+
+The storage account was deployed with locally-redundant storage (LRS) in Challenge 2. Change it to geo-redundant storage (GRS) to enable cross-region replication.
 
 1. Navigate to the **Storage Account** in Germany West Central (primary region). Select **Redundancy** from the left menu.
 
    ![image](./img/01.png)
 
-2. Verify that **Geo-redundant storage (GRS)** is enabled. This enables cross-replication of your storage account with the paired region.
+2. Change the redundancy from **Locally-redundant storage (LRS)** to **Geo-redundant storage (GRS)** and click **Save**. This enables cross-replication of your storage account with the paired region.
 
    ![image](./img/02.png)
 
-3. Identify the secondary region for data replication. You can see the Secondary Region of the Storage Account.
+3. Wait for the initial synchronization to the secondary region to complete. Then identify the secondary region for data replication — you can see the Secondary Region of the Storage Account.
 
    ![image](./img/11.png)
 
-> **Note:** With GRS, Azure automatically replicates your data to a secondary region that is hundreds of miles away from the primary region.
+> **Note:** With GRS, Azure automatically replicates your data to a secondary region that is hundreds of miles away from the primary region. The initial sync after switching from LRS to GRS can take some time before failover is available.
 
 ### Understanding GRS Replication
 
@@ -107,6 +109,7 @@ Confirm you have completed:
 - ✅ Added failed-over VMs to the load balancer backend pool in Sweden Central
 - ✅ Successfully accessed the web application through the load balancer
 - ✅ Verified the web application is operational in the secondary region
+- ✅ Changed the Storage Account redundancy from LRS to GRS
 - ✅ Confirmed GRS is enabled on the Storage Account
 - ✅ Identified the secondary region used for storage replication
 - ✅ Understood the storage account failover process

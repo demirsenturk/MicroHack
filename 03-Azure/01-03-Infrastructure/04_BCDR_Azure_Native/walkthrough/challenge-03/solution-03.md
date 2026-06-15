@@ -14,7 +14,7 @@ Ensure the lab environment from Challenge 2 is successfully deployed with:
 - Linux VM (`mh-linux`) in Germany West Central
 - Recovery Services Vault in Germany West Central
 - Backup Vault in Germany West Central
-- Storage Account with blob containers
+- Storage Account in Germany West Central (deployed **empty** — you will create a container in Task 2)
 
 ## Task 1: Enable Azure Backup for Linux VM
 
@@ -67,6 +67,15 @@ You can create custom backup policies to meet specific retention and scheduling 
 
 ## Task 2: Enable Azure Backup for Blobs
 
+### Create a Blob Container (Prerequisite)
+
+The storage account deployed in Challenge 2 is empty, and Azure Backup for blobs cannot be configured unless the storage account contains at least one container. Create a container first:
+
+1. Go to the Storage Account in Germany West Central and open **Containers** under **Data storage**.
+2. Select **+ Container**, enter a name (for example `backup-demo`), and select **Create**.
+
+> 💡 For detailed steps, see [Create a container](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container) in the Azure Blob Storage documentation.
+
 ### Configure Backup Vault Permissions
 
 1. Navigate to the Backup Vault in Germany West Central
@@ -82,7 +91,7 @@ You can create custom backup policies to meet specific retention and scheduling 
    ![IAM](./img/061.png)
 
 5. Select the **Storage Account Backup Contributor** role
-   ![Select Role](./img/062.png)
+   ![Select Role](./img/062a.png)
 
 6. Assign to the Backup Vault's Managed Identity
    ![Select Scope](./img/063.png)
@@ -129,6 +138,7 @@ For restoring blob storage, refer to the [Azure Blob Backup documentation](https
 
 Confirm you have completed:
 - ✅ Enabled Azure Backup for the Linux VM
+- ✅ Created a blob container in the storage account
 - ✅ Configured Azure Backup for Blob Storage
 - ✅ Successfully restored a VM from backup
 - ✅ (Optional) Restored a blob container

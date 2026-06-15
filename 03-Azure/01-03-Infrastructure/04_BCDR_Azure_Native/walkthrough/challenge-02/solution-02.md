@@ -6,7 +6,7 @@
 
 ## Solution Overview
 
-This challenge deploys the lab environment using Infrastructure as Code (IaC). The deployment creates resource groups in two Azure regions (Germany West Central and Sweden Central) along with Recovery Services Vaults, Backup Vaults, and a geo-redundant storage account.
+This challenge deploys the lab environment using Infrastructure as Code (IaC). The deployment creates resource groups in two Azure regions (Germany West Central and Sweden Central) along with Recovery Services Vaults, Backup Vaults, and a storage account. The storage account is intentionally deployed as **locally-redundant storage (LRS)**; participants reconfigure its redundancy to ZRS/GRS in Challenge 6 to explore Azure Storage disaster recovery.
 
 ## Prerequisites Validation
 
@@ -27,7 +27,9 @@ This challenge deploys the lab environment using Infrastructure as Code (IaC). T
 Choose one of the deployment methods described in [Challenge 2](../../challenges/challenge-02.md):
 
 ### Option 1: Azure Portal (ARM Template)
-Follow the step-by-step instructions in the challenge to deploy using the Azure Portal's custom template deployment feature with `deploy.json` and `main.parameters.json`.
+Follow the step-by-step instructions in the challenge to deploy using the Azure Portal's custom template deployment feature with [`deploy.json`](https://github.com/demirsenturk/MicroHack/blob/main/03-Azure/01-03-Infrastructure/04_BCDR_Azure_Native/Infra/App1/deploy.json) and [`main.parameters.json`](https://github.com/demirsenturk/MicroHack/blob/main/03-Azure/01-03-Infrastructure/04_BCDR_Azure_Native/Infra/App1/main.parameters.json).
+
+> **📂 Direct links:** [`deploy.json`](https://github.com/demirsenturk/MicroHack/blob/main/03-Azure/01-03-Infrastructure/04_BCDR_Azure_Native/Infra/App1/deploy.json) · [`main.parameters.json`](https://github.com/demirsenturk/MicroHack/blob/main/03-Azure/01-03-Infrastructure/04_BCDR_Azure_Native/Infra/App1/main.parameters.json) — use **Download raw file** on each GitHub page to save them locally.
 
 #### Deployment Steps with Screenshots:
 
@@ -79,7 +81,7 @@ After deployment, verify the following resources exist:
 - Resource Group: `mh<number>source-germanywestcentral-rg`
 - Recovery Services Vault: `mh-germanywestcentral-asrvault`
 - Backup Vault: `mh-germanywestcentral-asrvault-backupVault`
-- Storage Account (GRS): `mhgermanywestcentral<suffix>`
+- Storage Account (LRS by default — redundancy reconfigured in Challenge 6): `mhgermanywestcentral<suffix>`
 
 **Sweden Central (Target):**
 - Resource Group: `mh<number>target-swedencentral-rg`

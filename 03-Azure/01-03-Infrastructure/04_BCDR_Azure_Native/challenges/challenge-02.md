@@ -36,18 +36,24 @@ We will use **Infrastructure as Code** to deploy the lab environment. There are 
 
 ### Option 1 - Infrastructure as Code Template Deployment via Azure Portal (ARM)
 
+> **📂 Required files:** Download these two files from the repository before you start:
+> - [`deploy.json`](https://github.com/demirsenturk/MicroHack/blob/main/03-Azure/01-03-Infrastructure/04_BCDR_Azure_Native/Infra/App1/deploy.json) — the ARM template
+> - [`main.parameters.json`](https://github.com/demirsenturk/MicroHack/blob/main/03-Azure/01-03-Infrastructure/04_BCDR_Azure_Native/Infra/App1/main.parameters.json) — the parameter file
+>
+> On each GitHub page, use **Download raw file** (the download icon at the top right of the file view) to save the file locally.
+
 1. Go to the Azure portal and sign in.
 2. In the Azure portal search bar, search for "Deploy a custom template" and select it from the available options.
 3. Click **Build your own template in the editor**.
-4. **Load file** to upload the `deploy.json`.
+4. **Load file** to upload [`deploy.json`](https://github.com/demirsenturk/MicroHack/blob/main/03-Azure/01-03-Infrastructure/04_BCDR_Azure_Native/Infra/App1/deploy.json).
 5. Click **Save**.
 6. **Edit Parameters** to upload the parameter file.
-7. **Load file** to upload `main.parameters.json`.
+7. **Load file** to upload [`main.parameters.json`](https://github.com/demirsenturk/MicroHack/blob/main/03-Azure/01-03-Infrastructure/04_BCDR_Azure_Native/Infra/App1/main.parameters.json).
 8. Click **Save**.
 9. Change the **deployment prefix** `<insertParticipantNumber>` and define a **VM Admin Password**.
 10. Proceed with the deployment.
 
-> **Note:** The template `deploy.json` and the parameter file `main.parameters.json` can be found in the downloaded zip file within the folder Infra/App1.
+> **Note:** The template [`deploy.json`](https://github.com/demirsenturk/MicroHack/blob/main/03-Azure/01-03-Infrastructure/04_BCDR_Azure_Native/Infra/App1/deploy.json) and the parameter file [`main.parameters.json`](https://github.com/demirsenturk/MicroHack/blob/main/03-Azure/01-03-Infrastructure/04_BCDR_Azure_Native/Infra/App1/main.parameters.json) can also be found in the downloaded zip file within the folder `Infra/App1`.
 
 
 ### Option 2 - Infrastructure as Code Template Deployment via CloudShell (Bicep)
@@ -60,13 +66,13 @@ To deploy the lab environment using **Bicep**, use the command documented here:
 
 After a successful deployment, you should see two new resource groups: `mh-source-germanywestcentral-rg` and `mh-target-swedencentral-rg`.
 
-Verify the following resources and setup. Ensure the storage account has geo-redundancy enabled.
+Verify the following resources and setup. Note that the storage account is deployed with **locally-redundant storage (LRS)** by design — you will change its redundancy to ZRS/GRS yourself in a later challenge (Challenge 6) to explore Azure Storage disaster recovery.
 
 * **Region 1: Germany West Central (Source environment)**
   * Resource Group: `mh<your assigned number>source-germanywestcentral-rg`
   * Recovery Services Vault: `mh-germanywestcentral-asrvault`
   * Backup Vault: `mh-germanywestcentral-asrvault-backupVault`
-  * Storage Account with GRS (geo-redundant storage) redundancy: `mhgermanywestcentral` \<Suffix\>
+  * Storage Account (LRS by default — redundancy is changed later): `mhgermanywestcentral` \<Suffix\>
 * **Region 2: Sweden Central (Target environment)**
   * Resource Group: `mh<your assigned number>target-swedencentral-rg`
   * Recovery Services Vault: `mh-swedencentral-asrvault`
@@ -81,12 +87,15 @@ There is a WebApp running on the machines deployed in the Lab Environment. The W
 ![Traffic Manager Settings](./exploration/4.png)
 ![Website via Traffic Manager](./exploration/004.png)
 
+> [!TIP]
+> The deployed storage account `mhgermanywestcentral<suffix>` is created **empty** (no blob containers). In Challenge 3 you will enable Azure Backup for blobs, which requires at least one container to exist. You can already create a container now (e.g. `backup-demo`) to make Challenge 3 smoother. See [Create a container](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container).
+
 ### Success Criteria ✅
 
 * Resource Groups created in both regions (Germany West Central & Sweden Central).
 * Recovery Services Vaults created in both regions.
 * Backup Vaults created in both regions.
-* A geo-redundant Storage Account created.
+* A Storage Account created (locally-redundant / LRS by default — you will reconfigure its redundancy in Challenge 6).
 * The Web application is successfully deployed using a backend pool of two Virtual Machines.
 
 ### 📚 Learning Resources

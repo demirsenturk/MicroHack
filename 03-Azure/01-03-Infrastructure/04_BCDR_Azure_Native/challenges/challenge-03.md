@@ -15,6 +15,10 @@ In this challenge, you will learn how to back up and restore a Linux Virtual Mac
 ### Protect in Azure - Backup / Restore
 1. Enable Azure Backup for the Linux VM in the primary region.
 2. Enable Azure Backup for Azure Blob Storage.
+   > [!IMPORTANT]
+   > The storage account deployed in Challenge 2 is **empty**. Azure Backup for blobs requires at least one **container** to exist in the storage account. **Before enabling backup, create a blob container** (e.g. named `backup-demo`) in the storage account, otherwise you will not be able to configure protection.
+   >
+   > 💡 See [Create a container](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container) for step-by-step guidance.
 3. Restore a VM in Azure.
 4. Optional: Restore a file vom Azure Blob.
 

@@ -94,14 +94,13 @@ Happy hacking! 🚀
 ### Solutions - Spoilerwarning
 
 - [Solution 1 - Understand the Disaster Recovery terms and define a strategy](./walkthrough/challenge-01/solution-01.md)
-- [Solution 2 - Setup and landing zone preparation](./walkthrough/challenge-02/solution-02.md)
-- [Solution 3 - Regional Protection and Disaster Recovery (DR)](./walkthrough/challenge-03/solution-03.md)
-  - [Solution 3.1 - Protect in Azure - Backup / Restore](./walkthrough/challenge-03/solution-03.md#challenge-31---protect-in-azure---backup--restore)
-  - [Solution 3.2 - Protect in Azure with Disaster Recover (DR) within an Azure Region](./walkthrough/challenge-03/solution-03.md#challenge-32---protect-in-azure-with-disaster-recover-dr-within-an-azure-region)
-- [Solution 4 - Protect in Azure with Disaster Recovery (Inter-regional)](./walkthrough/challenge-04/solution-04.md)
-- [Solution 5 - Protect your Azure PaaS with Disaster Recovery](./walkthrough/challenge-05/solution-05.md)
-- [Solution 6 - Failback to the Primary Region (Germany West Central)](./walkthrough/challenge-06/solution-06.md)
-- [Extra Solution - Monitor & Protect your Azure PaaS (Azure SQL Database)](./walkthrough/challenge-07/solution-07.md)
+- [Solution 2 - Prerequisites and Landing Zone Preparation](./walkthrough/challenge-02/solution-02.md)
+- [Solution 3 - Regional Protection (Backup)](./walkthrough/challenge-03/solution-03.md)
+- [Solution 4 - Regional Disaster Recovery (DR)](./walkthrough/challenge-04/solution-04.md)
+- [Solution 5 - Disaster Recovery (DR) across Azure Regions](./walkthrough/challenge-05/solution-05.md)
+- [Solution 6 - Restore Web Application and verify Azure Storage DR](./walkthrough/challenge-06/solution-06.md)
+- [Solution 7 - Failback to the Primary Region (Germany West Central)](./walkthrough/challenge-07/solution-07.md)
+- [Optional: Solution 8 - Monitoring and Alerting for BCDR Operations](./walkthrough/challenge-08/solution-08.md)
 
 ### Azure Business Continuity Guide (ABC Guide)
 The Azure Business Continuity Guide provides a comprehensive set of recommendations to help customers define what BCDR looks like for their applications.

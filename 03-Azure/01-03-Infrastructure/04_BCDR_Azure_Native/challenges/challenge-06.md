@@ -4,7 +4,7 @@
 
 ### Goal 🎯
 
-In this challenge 6, you will re-establish the connection to your web application from the failed-over region and then test disaster recovery for an Azure Storage account with GRS enabled. The primary objective is to ensure business continuity by protecting critical data stored in Azure storage accounts against potential disasters.
+In this challenge 6, you will re-establish the connection to your web application from the failed-over region and then test disaster recovery for an Azure Storage account. The storage account was deployed with **locally-redundant storage (LRS)** in Challenge 2, so you will first change its redundancy to **geo-redundant storage (GRS)** and then validate cross-region replication and failover. The primary objective is to ensure business continuity by protecting critical data stored in Azure storage accounts against potential disasters.
 
 After the failover, the VMs are running in the secondary region but the load balancer backend pool needs to be updated to point to them.
 
@@ -16,7 +16,8 @@ After the failover, the VMs are running in the secondary region but the load bal
   * Test the connection to the Web Application.
   * High Availability & SLA Discussion: Use Azure Copilot to calculate the composite SLAs for your application.
 * Task 2: Disaster Recovery for Azure Storage Account.
-  * Verify the configuration of the Azure Storage Account redudancy, and confirm GRS is enabled and data is replicated to a secondary region. Which region is used as secondary region?
+  * Change the redundancy of the Azure Storage Account from **LRS** to **GRS** (Geo-redundant storage) in the Azure Portal, and wait for the initial replication to the secondary region to complete.
+  * Verify the configuration of the Azure Storage Account redundancy, and confirm GRS is enabled and data is replicated to a secondary region. Which region is used as secondary region?
   * Perform a failover test for the storage account to validate the disaster recovery setup.
 
 ### Calculate Composite SLAs with Azure Copilot
@@ -60,7 +61,7 @@ How do I calculate the composite SLA for my application?
 
 ### Success Criteria ✅
 * You have successfully re-established connection to your web application from the secondary region.
-* You have verified that the Azure Storage Account has GRS enabled and identified the secondary region used for data replication.
+* You have changed the Storage Account redundancy from LRS to GRS and confirmed it is enabled, identifying the secondary region used for data replication.
 * You have successfully performed a failover test for the Azure Storage Account.
 
 ### 📚 Learning Resources
